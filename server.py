@@ -3,7 +3,7 @@ import subprocess
 from flask import Flask, render_template
 app = Flask(__name__)
 
-# keep runnign process global
+# keep running process global
 proc = None
 
 def get_ip_address():
