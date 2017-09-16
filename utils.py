@@ -23,7 +23,7 @@ class TempImage:
 
 
 def send_email(conf):
-    fromaddr = "address@gmail.com" 
+    fromaddr = conf['email_from']
     for email_address in conf['email_address']:
         toaddrs  = email_address
         print("[INFO] Emailing to {}".format(email_address))
@@ -51,13 +51,18 @@ def send_email(conf):
                 msg.attach(part)
 
         # Credentials (if needed) : EDIT THIS
-        username = "gmail_username"
-        password = "password"
+        email_username = None
+        if 'email_username' in conf:
+            username = conf['email_username']
+        password = None
+        if 'email_password' in conf:
+            password = conf['email_password']
 
         # The actual mail send
-        server = smtplib.SMTP('smtp.gmail.com:587')
+        server = smtplib.SMTP(conf['email_server'])
         server.starttls()
-        server.login(username,password)
+        if email_username and email_password:
+            server.login(username,password)
         server.sendmail(fromaddr, toaddrs, msg.as_string())
         server.quit()
 
