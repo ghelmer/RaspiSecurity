@@ -27,7 +27,7 @@ def send_email(conf):
     for email_address in conf['email_address']:
         toaddrs  = email_address
         print("[INFO] Emailing to {}".format(email_address))
-        text = 'Hey Someone in Your House!!!!'
+        text = 'Raspberry Pi image captured'
         subject = 'Security Alert!!'
         message = 'Subject: {}\n\n{}'.format(subject, text)
 
